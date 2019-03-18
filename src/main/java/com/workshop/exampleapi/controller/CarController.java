@@ -55,5 +55,11 @@ public class CarController {
         return carService.updateCar(carId, car);
     }
 
+    @DeleteMapping(path = "/cars/{carId}")
+    public void updateCar(@PathVariable Long carId) {
+
+        carService.deleteCar(carId);
+    }
+
 
 }

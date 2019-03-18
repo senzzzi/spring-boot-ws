@@ -37,7 +37,7 @@ public class CarService {
     public Car addCar(Car car) {
 
         Car finalCar = carRepository.save(car);
-        return carRepository.findCarById(finalCar.getId());
+        return carRepository.findById(finalCar.getId()).get();
 
     }
 
@@ -50,5 +50,9 @@ public class CarService {
             throw new CarNotFoundException("The car with Id " + carId + " does not exist");
         }
 
+    }
+
+    public void deleteCar(Long carId) {
+        carRepository.deleteById(carId);
     }
 }
