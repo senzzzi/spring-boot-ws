@@ -1,11 +1,13 @@
 package com.workshop.exampleapi.service;
 
+import com.workshop.exampleapi.exception.CarNotFoundException;
 import com.workshop.exampleapi.model.Car;
 import com.workshop.exampleapi.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -24,6 +26,11 @@ public class CarService {
     }
 
     public Car getCardById(Long carId) {
-        return carRepository.findCarById(carId);
+        Optional<Car> carOptional = carRepository.findById(carId);
+        if (carOptional.isPresent()) {
+            return carOptional.get();
+        } else {
+            throw new CarNotFoundException("The car with Id " + carId + " does not exist");
+        }
     }
 }
