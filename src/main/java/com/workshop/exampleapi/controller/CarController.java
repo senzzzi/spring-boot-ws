@@ -49,5 +49,11 @@ public class CarController {
         return carService.addCar(car);
     }
 
+    @PutMapping(path = "/cars/{carId}")
+    public Car updateCar(@PathVariable Long carId, @RequestBody Car car) {
+
+        return carService.updateCar(carId, car);
+    }
+
 
 }

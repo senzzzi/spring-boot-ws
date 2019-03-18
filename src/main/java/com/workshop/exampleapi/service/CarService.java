@@ -40,4 +40,15 @@ public class CarService {
         return carRepository.findCarById(finalCar.getId());
 
     }
+
+    public Car updateCar(Long carId, Car car) {
+
+        if (carRepository.existsById(carId)) {
+            car.setId(carId);
+            return addCar(car);
+        } else {
+            throw new CarNotFoundException("The car with Id " + carId + " does not exist");
+        }
+
+    }
 }
