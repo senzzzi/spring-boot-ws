@@ -1,6 +1,5 @@
 package com.workshop.exampleapi.controller;
 
-import com.workshop.exampleapi.exception.CarNotFoundException;
 import com.workshop.exampleapi.service.CarService;
 import com.workshop.exampleapi.model.Car;
 import org.slf4j.Logger;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static org.hibernate.validator.internal.util.Contracts.assertTrue;
 
 @RestController
 public class CarController {
