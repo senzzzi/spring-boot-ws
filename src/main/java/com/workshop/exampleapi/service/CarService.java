@@ -33,4 +33,11 @@ public class CarService {
             throw new CarNotFoundException("The car with Id " + carId + " does not exist");
         }
     }
+
+    public Car addCar(Car car) {
+
+        Car finalCar = carRepository.save(car);
+        return carRepository.findCarById(finalCar.getId());
+
+    }
 }

@@ -6,12 +6,13 @@ import com.workshop.exampleapi.model.Car;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+import static org.hibernate.validator.internal.util.Contracts.assertTrue;
 
 @RestController
 public class CarController {
@@ -38,5 +39,15 @@ public class CarController {
 
         return carService.getCardById(carId);
     }
+
+    @PostMapping(path = "/cars")
+    public Car createCar(@RequestBody Car car) {
+
+        if (nonNull(car.getId())) {
+            throw new RuntimeException("Car id must be null");
+        }
+        return carService.addCar(car);
+    }
+
 
 }
